@@ -3,14 +3,12 @@ const xml2js = require("xml2js");
 const fs = require("fs");
 
 // --- CONFIGURATION ---
-// NOTE: For GitHub Actions, we will use an Environment Variable.
-// If running locally, it falls back to your hardcoded URL.
 const DISCORD_WEBHOOK_URL =
   process.env.DISCORD_WEBHOOK_URL ||
   "https://discord.com/api/webhooks/1460171595845996554/T0KPIzJsSv33CqBu3DB9rktMqu9BININB76hywkDP_J9cnQ1-hsiJeAaOs3VaNhuGWM3";
-const APP_VERSION = "3.0.0 (Auto)";
+const APP_VERSION = "3.1.0 (Ultimate)";
 
-// CLEAR THIS LIST if you don't have real maintenance!
+// MAINTENANCE SCHEDULE
 const SCHEDULED_MAINTENANCE = [];
 
 const SITEMAPS = [
@@ -106,7 +104,7 @@ async function checkAllPages(db) {
       if (db[url].length > 50) db[url].shift();
     }
 
-    console.log("\n✅ Saving Data...");
+    console.log("\n✅ Saving & Generating App...");
     fs.writeFileSync(DATABASE_FILE, JSON.stringify(db, null, 2));
     generateFullApp(db);
   } catch (error) {
@@ -131,9 +129,7 @@ async function sendDiscordAlert(url, status, type) {
         },
       ],
     });
-  } catch (e) {
-    console.log("Discord Error");
-  }
+  } catch (e) {}
 }
 
 function generateFullApp(database) {
@@ -196,6 +192,7 @@ function generateFullApp(database) {
   avgTime = urls.length > 0 ? (totalTime / urls.length).toFixed(0) : 0;
   incidents.sort((a, b) => new Date(b.date) - new Date(a.date));
 
+  // GENERATE THE ULTIMATE HTML
   const htmlContent = `
     <!DOCTYPE html>
     <html lang="en">
@@ -204,107 +201,211 @@ function generateFullApp(database) {
         <title>BabyOrgano Monitor Pro</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
         <style>
-            :root { --bg-body: #0d1117; --bg-sidebar: #010409; --bg-card: #161b22; --border: #30363d; --text-main: #c9d1d9; --text-muted: #8b949e; --green: #238636; --red: #da3633; --blue: #58a6ff; }
-            body.light-mode { --bg-body: #f6f8fa; --bg-sidebar: #ffffff; --bg-card: #ffffff; --border: #d0d7de; --text-main: #24292f; }
+            :root { 
+                --bg-body: #0d1117; --bg-sidebar: #010409; --bg-card: #161b22; 
+                --border: #30363d; --text-main: #c9d1d9; --text-muted: #8b949e; 
+                --green: #238636; --green-dim: rgba(35, 134, 54, 0.4);
+                --red: #da3633; --red-dim: rgba(218, 54, 51, 0.4);
+                --blue: #58a6ff; --blue-dim: rgba(88, 166, 255, 0.2);
+            }
+            body.light-mode {
+                --bg-body: #f6f8fa; --bg-sidebar: #ffffff; --bg-card: #ffffff; 
+                --border: #d0d7de; --text-main: #24292f; --text-muted: #57606a; 
+            }
             * { box-sizing: border-box; }
-            body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); margin: 0; display: flex; height: 100vh; overflow: hidden; }
+            body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); margin: 0; display: flex; height: 100vh; overflow: hidden; transition: background 0.3s; }
+            
             .sidebar { width: 260px; background: var(--bg-sidebar); border-right: 1px solid var(--border); padding: 20px; display: flex; flex-direction: column; flex-shrink: 0; }
-            .nav-item { padding: 12px; margin-bottom:5px; border-radius: 6px; color: var(--text-muted); cursor: pointer; }
-            .nav-item.active { background: #1f6feb33; color: var(--blue); border-left: 3px solid var(--blue); }
+            .logo { font-size: 20px; font-weight: 700; margin-bottom: 40px; display: flex; align-items: center; gap: 10px; }
+            .nav-item { padding: 12px 15px; border-radius: 6px; color: var(--text-muted); cursor: pointer; transition: 0.2s; font-weight: 500; margin-bottom: 5px; }
+            .nav-item:hover, .nav-item.active { background: var(--bg-card); color: var(--text-main); }
+            .nav-item.active { border-left: 3px solid var(--green); background: var(--blue-dim); }
+            
             .main { flex: 1; padding: 30px; overflow-y: auto; }
-            .view-section { display: none; } .view-section.active { display: block; }
+            .view-section { display: none; }
+            .view-section.active { display: block; animation: fadeIn 0.3s; }
+            @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+            .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+            .theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text-main); padding: 8px 12px; border-radius: 6px; cursor: pointer; }
+            input[type="text"], input[type="date"] { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 10px; border-radius: 6px; }
+
             .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
             .stat-card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px; border-radius: 8px; }
-            .stat-value { font-size: 28px; font-weight: 700; }
+            .stat-value { font-size: 28px; font-weight: 700; margin-top: 10px; }
+            .text-green { color: #3fb950; } .text-red { color: #f85149; }
+
             .monitor-list { display: grid; gap: 12px; }
-            .monitor-card { background: var(--bg-card); border: 1px solid var(--border); padding: 15px 20px; border-radius: 8px; display: flex; align-items: center; }
+            .monitor-card { background: var(--bg-card); border: 1px solid var(--border); padding: 15px 20px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; }
             .monitor-card.down { border-left: 4px solid var(--red); }
             .m-history { display: flex; gap: 4px; height: 24px; align-items: flex-end; }
             .tick { width: 6px; height: 100%; border-radius: 2px; background: var(--border); opacity: 0.5; }
-            .tick.up { background: #3fb950; opacity: 1; } .tick.down { background: #f85149; opacity: 1; }
+            .tick.up { background: #3fb950; opacity: 1; }
+            .tick.down { background: #f85149; opacity: 1; }
+
             table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-            th, td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; }
+            th { text-align: left; color: var(--text-muted); padding: 10px; border-bottom: 1px solid var(--border); }
+            td { padding: 15px 10px; border-bottom: 1px solid var(--border); }
             .badge { padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; }
-            .bg-red { background: rgba(218, 54, 51, 0.2); color: var(--red); } .bg-blue { background: rgba(88, 166, 255, 0.2); color: var(--blue); }
-            input { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 10px; border-radius: 6px; }
+            .bg-red { background: var(--red-dim); color: var(--red); }
+            .bg-blue { background: var(--blue-dim); color: var(--blue); }
+            .btn { padding: 10px 20px; background: var(--green); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
         </style>
     </head>
     <body>
         <div class="sidebar">
-            <h2 style="margin:0 0 40px 0">⚡ Monitor</h2>
+            <div class="logo">⚡ BabyOrgano</div>
             <div class="nav-item active" onclick="switchTab('dashboard', this)">Dashboard</div>
             <div class="nav-item" onclick="switchTab('incidents', this)">Incidents</div>
             <div class="nav-item" onclick="switchTab('maintenance', this)">Maintenance</div>
-            <div class="nav-item" onclick="switchTab('settings', this)">Settings</div>
+            <div class="nav-item" style="margin-top: auto;" onclick="switchTab('settings', this)">Settings</div>
         </div>
+
         <div class="main">
             <div id="dashboard" class="view-section active">
-                <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                <div class="top-bar">
                     <h2>Overview</h2>
-                    <input type="text" id="s" placeholder="Search..." onkeyup="runSearch()">
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="searchInput" placeholder="Search pages..." onkeyup="runSearch()" style="width: 300px;">
+                        <button class="theme-toggle" onclick="toggleTheme()">🌗 Theme</button>
+                    </div>
                 </div>
+
                 <div class="stats-grid">
-                    <div class="stat-card"><div>UP</div><div class="stat-value" style="color:#3fb950">${up}</div></div>
-                    <div class="stat-card"><div>DOWN</div><div class="stat-value" style="color:#f85149">${down}</div></div>
-                    <div class="stat-card"><div>PING</div><div class="stat-value">${avgTime}ms</div></div>
+                    <div class="stat-card"><div>UP</div><div class="stat-value text-green">${up}</div></div>
+                    <div class="stat-card"><div>DOWN</div><div class="stat-value text-red">${down}</div></div>
+                    <div class="stat-card"><div>AVG PING</div><div class="stat-value">${avgTime}ms</div></div>
                     <div class="stat-card"><div>TOTAL</div><div class="stat-value">${
                       urls.length
                     }</div></div>
                 </div>
-                <div class="monitor-list">${monitorListHTML}</div>
+
+                <div class="monitor-list" id="monitorList">
+                    ${monitorListHTML}
+                </div>
             </div>
+
             <div id="incidents" class="view-section">
-                <h2>Incidents</h2>
-                <table><thead><tr><th>Date</th><th>URL</th><th>Status</th></tr></thead>
-                <tbody>${incidents
-                  .map(
-                    (i) =>
-                      `<tr><td>${new Date(
-                        i.date
-                      ).toLocaleString()}</td><td>${i.url
-                        .split("/")
-                        .pop()}</td><td><span class="badge bg-red">${
-                        i.status
-                      }</span></td></tr>`
-                  )
-                  .join("")}</tbody></table>
+                <div class="top-bar">
+                    <h2>Incident History</h2>
+                    <input type="date" id="dateFilter" onchange="filterIncidentsByDate()">
+                </div>
+                <table id="incidentsTable">
+                    <thead><tr><th>Date</th><th>Product / URL</th><th>Status</th></tr></thead>
+                    <tbody>
+                        ${incidents
+                          .map(
+                            (inc) => `
+                        <tr data-date="${inc.date.split("T")[0]}">
+                            <td>${new Date(inc.date).toLocaleString()}</td>
+                            <td>${inc.url.split("/").pop()}</td>
+                            <td><span class="badge bg-red">Error ${
+                              inc.status
+                            }</span></td>
+                        </tr>`
+                          )
+                          .join("")}
+                    </tbody>
+                </table>
+                ${
+                  incidents.length === 0
+                    ? '<p style="padding:20px; text-align:center">No incidents recorded yet. Great job! 🎉</p>'
+                    : ""
+                }
             </div>
+
             <div id="maintenance" class="view-section">
-                <h2>Maintenance</h2>
-                <table><thead><tr><th>Event</th><th>Date</th><th>Status</th></tr></thead>
-                <tbody>${SCHEDULED_MAINTENANCE.map(
-                  (m) =>
-                    `<tr><td>${m.title}</td><td>${m.date}</td><td><span class="badge bg-blue">${m.status}</span></td></tr>`
-                ).join("")}</tbody></table>
+                <h2>Maintenance Schedule</h2>
+                <table>
+                    <thead><tr><th>Event</th><th>Date</th><th>Duration</th><th>Status</th></tr></thead>
+                    <tbody>
+                        ${SCHEDULED_MAINTENANCE.map(
+                          (m) => `
+                        <tr>
+                            <td>${m.title}</td>
+                            <td>${m.date}</td>
+                            <td>${m.duration}</td>
+                            <td><span class="badge bg-blue">${m.status}</span></td>
+                        </tr>`
+                        ).join("")}
+                    </tbody>
+                </table>
             </div>
+
             <div id="settings" class="view-section">
-                <h2>Settings</h2>
-                <p>Version: ${APP_VERSION}</p>
-                <button onclick="exportData()" style="padding:10px; background:#238636; color:white; border:none; border-radius:6px; cursor:pointer;">Export CSV</button>
+                <h2>System Settings</h2>
+                <div class="stat-card" style="margin-bottom: 20px;">
+                    <h3>Application Info</h3>
+                    <p><strong>Version:</strong> ${APP_VERSION}</p>
+                    <p><strong>Webhook Status:</strong> ${
+                      DISCORD_WEBHOOK_URL ? "✅ Connected" : "❌ Not Configured"
+                    }</p>
+                    <p><strong>Database:</strong> database.json (${(
+                      fs.statSync(DATABASE_FILE).size / 1024
+                    ).toFixed(2)} KB)</p>
+                </div>
+                <h3>Data Management</h3>
+                <button class="btn" onclick="exportData()">📥 Export Database to CSV</button>
             </div>
         </div>
+
         <script>
-            function switchTab(id, btn) {
-                document.querySelectorAll('.view-section').forEach(e => e.classList.remove('active'));
-                document.querySelectorAll('.nav-item').forEach(e => e.classList.remove('active'));
-                document.getElementById(id).classList.add('active');
-                btn.classList.add('active');
+            function switchTab(tabId, navItem) {
+                document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                navItem.classList.add('active');
             }
+
+            function toggleTheme() {
+                document.body.classList.toggle('light-mode');
+                localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+            }
+            if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
+
             function runSearch() {
-                const term = document.getElementById('s').value.toLowerCase();
-                document.querySelectorAll('.monitor-card').forEach(c => {
-                    c.style.display = c.dataset.name.includes(term) ? 'flex' : 'none';
+                const term = document.getElementById('searchInput').value.toLowerCase();
+                const cards = document.querySelectorAll('.monitor-card');
+                cards.forEach(card => {
+                    const name = card.dataset.name;
+                    if (name.includes(term)) card.style.display = 'flex'; else card.style.display = 'none';
                 });
             }
+
+            function filterIncidentsByDate() {
+                const filterDate = document.getElementById('dateFilter').value;
+                const rows = document.querySelectorAll('#incidentsTable tbody tr');
+                
+                rows.forEach(row => {
+                    if (!filterDate) {
+                        row.style.display = ''; // Show all if no date selected
+                    } else {
+                        const rowDate = row.getAttribute('data-date');
+                        row.style.display = (rowDate === filterDate) ? '' : 'none';
+                    }
+                });
+            }
+
             function exportData() {
-                const d = ${JSON.stringify(incidents)};
-                if(d.length === 0) { alert("No incidents to export!"); return; }
-                let c = "Date,URL,Status\\n" + d.map(r => \`\${r.date},\${r.url},\${r.status}\`).join("\\n");
-                const a = document.createElement("a"); a.href = "data:text/csv;charset=utf-8," + encodeURI(c); a.download = "incidents.csv"; a.click();
+                const data = ${JSON.stringify(incidents)};
+                let csvContent = "data:text/csv;charset=utf-8,Date,URL,Status\\n";
+                data.forEach(row => {
+                    csvContent += \`\${row.date},\${row.url},\${row.status}\\n\`;
+                });
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "monitor_report.csv");
+                document.body.appendChild(link);
+                link.click();
             }
         </script>
     </body>
-    </html>`;
+    </html>
+    `;
+
   fs.writeFileSync("dashboard.html", htmlContent);
-  console.log("✅ App Generated!");
+  console.log("✅ Ultimate App Generated!");
 }
+
+checkAllPages();
