@@ -3,10 +3,11 @@ const xml2js = require("xml2js");
 const fs = require("fs");
 
 // --- CONFIGURATION ---
+// SECURITY NOTE: If using GitHub Actions, this loads from Secrets.
 const DISCORD_WEBHOOK_URL =
   process.env.DISCORD_WEBHOOK_URL ||
   "https://discord.com/api/webhooks/1460171595845996554/T0KPIzJsSv33CqBu3DB9rktMqu9BININB76hywkDP_J9cnQ1-hsiJeAaOs3VaNhuGWM3";
-const APP_VERSION = "3.1.0 (Ultimate)";
+const APP_VERSION = "3.2.0 (Ultimate)";
 
 // MAINTENANCE SCHEDULE
 const SCHEDULED_MAINTENANCE = [];
@@ -22,7 +23,7 @@ const DATABASE_FILE = "database.json";
 // --- TEST MODE CHECK ---
 if (process.argv.includes("--test")) {
   console.log("🧪 Sending TEST Discord Alert...");
-  sendDiscordAlert("TEST-PAGE", 500, "DOWN").then(() => {
+  sendDiscordAlert("TEST-BUTTON-CLICK", 200, "TEST").then(() => {
     console.log("✅ Test Sent! Check your Discord.");
     process.exit(0);
   });
@@ -114,8 +115,14 @@ async function checkAllPages(db) {
 
 async function sendDiscordAlert(url, status, type) {
   if (!DISCORD_WEBHOOK_URL) return;
-  const color = type === "DOWN" ? 15158332 : 3066993;
-  const title = type === "DOWN" ? "🚨 Page Down!" : "✅ Page Recovered";
+  const color =
+    type === "DOWN" ? 15158332 : type === "TEST" ? 3447003 : 3066993;
+  const title =
+    type === "DOWN"
+      ? "🚨 Page Down!"
+      : type === "TEST"
+      ? "🔔 Test Notification"
+      : "✅ Page Recovered";
   try {
     await axios.post(DISCORD_WEBHOOK_URL, {
       embeds: [
@@ -227,14 +234,26 @@ function generateFullApp(database) {
             @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
             .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-            .theme-toggle { background: transparent; border: 1px solid var(--border); color: var(--text-main); padding: 8px 12px; border-radius: 6px; cursor: pointer; }
+            .actions { display: flex; gap: 10px; align-items: center; }
+            
+            /* Buttons & Inputs */
+            .theme-toggle, .bell-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 8px 12px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+            .bell-btn:hover { color: var(--blue); border-color: var(--blue); }
             input[type="text"], input[type="date"] { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 10px; border-radius: 6px; }
-
+            
+            /* Stats Grid */
             .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
             .stat-card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px; border-radius: 8px; }
             .stat-value { font-size: 28px; font-weight: 700; margin-top: 10px; }
             .text-green { color: #3fb950; } .text-red { color: #f85149; }
 
+            /* Filters */
+            .filter-bar { display: flex; gap: 10px; margin-bottom: 20px; }
+            .filter-pill { background: var(--bg-card); border: 1px solid var(--border); padding: 6px 16px; border-radius: 20px; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: 0.2s; }
+            .filter-pill:hover { border-color: var(--text-muted); color: var(--text-main); }
+            .filter-pill.active { background: var(--green-dim); color: #3fb950; border-color: var(--green); }
+
+            /* Monitor List */
             .monitor-list { display: grid; gap: 12px; }
             .monitor-card { background: var(--bg-card); border: 1px solid var(--border); padding: 15px 20px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; }
             .monitor-card.down { border-left: 4px solid var(--red); }
@@ -265,8 +284,9 @@ function generateFullApp(database) {
             <div id="dashboard" class="view-section active">
                 <div class="top-bar">
                     <h2>Overview</h2>
-                    <div style="display:flex; gap:10px;">
-                        <input type="text" id="searchInput" placeholder="Search pages..." onkeyup="runSearch()" style="width: 300px;">
+                    <div class="actions">
+                        <input type="text" id="searchInput" placeholder="Search pages..." onkeyup="runSearch()" style="width: 250px;">
+                        <button class="bell-btn" onclick="testDiscord()">🔔 Test</button>
                         <button class="theme-toggle" onclick="toggleTheme()">🌗 Theme</button>
                     </div>
                 </div>
@@ -278,6 +298,14 @@ function generateFullApp(database) {
                     <div class="stat-card"><div>TOTAL</div><div class="stat-value">${
                       urls.length
                     }</div></div>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="filter-pill active" onclick="setFilter('all', this)">All Monitors</div>
+                    <div class="filter-pill" onclick="setFilter('product', this)">Products</div>
+                    <div class="filter-pill" onclick="setFilter('collection', this)">Collections</div>
+                    <div class="filter-pill" onclick="setFilter('page', this)">Pages</div>
+                    <div class="filter-pill" onclick="setFilter('down', this)">⚠️ Issues</div>
                 </div>
 
                 <div class="monitor-list" id="monitorList">
@@ -363,22 +391,39 @@ function generateFullApp(database) {
             }
             if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
 
+            // --- FILTER LOGIC ---
+            let activeFilter = 'all';
+            function setFilter(filterType, btn) {
+                activeFilter = filterType;
+                document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                runSearch(); // Re-run search/filter logic
+            }
+
             function runSearch() {
                 const term = document.getElementById('searchInput').value.toLowerCase();
                 const cards = document.querySelectorAll('.monitor-card');
                 cards.forEach(card => {
+                    const type = card.dataset.type;
+                    const status = card.dataset.status;
                     const name = card.dataset.name;
-                    if (name.includes(term)) card.style.display = 'flex'; else card.style.display = 'none';
+                    
+                    let matchFilter = false;
+                    if (activeFilter === 'all') matchFilter = true;
+                    else if (activeFilter === 'down') matchFilter = (status === 'down');
+                    else matchFilter = (type === activeFilter);
+
+                    if (matchFilter && name.includes(term)) card.style.display = 'flex';
+                    else card.style.display = 'none';
                 });
             }
 
             function filterIncidentsByDate() {
                 const filterDate = document.getElementById('dateFilter').value;
                 const rows = document.querySelectorAll('#incidentsTable tbody tr');
-                
                 rows.forEach(row => {
                     if (!filterDate) {
-                        row.style.display = ''; // Show all if no date selected
+                        row.style.display = ''; 
                     } else {
                         const rowDate = row.getAttribute('data-date');
                         row.style.display = (rowDate === filterDate) ? '' : 'none';
@@ -399,13 +444,17 @@ function generateFullApp(database) {
                 document.body.appendChild(link);
                 link.click();
             }
+
+            function testDiscord() {
+                alert("To test Discord safely, please run this command in your terminal:\\n\\nnode monitor-dashboard.js --test\\n\\n(Browsers cannot send webhooks directly due to CORS security).");
+            }
         </script>
     </body>
     </html>
     `;
 
   fs.writeFileSync("dashboard.html", htmlContent);
-  console.log("✅ Ultimate App Generated!");
+  console.log("✅ Ultimate App (Filters + Bell) Generated!");
 }
 
 checkAllPages();
