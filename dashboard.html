@@ -1,0 +1,1596 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>BabyOrgano Monitor Pro</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            :root { --bg-body: #0d1117; --bg-sidebar: #010409; --bg-card: #161b22; --border: #30363d; --text-main: #c9d1d9; --text-muted: #8b949e; --green: #238636; --red: #da3633; --blue: #58a6ff; }
+            body.light-mode { --bg-body: #f6f8fa; --bg-sidebar: #ffffff; --bg-card: #ffffff; --border: #d0d7de; --text-main: #24292f; }
+            * { box-sizing: border-box; }
+            body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); margin: 0; display: flex; height: 100vh; overflow: hidden; }
+            .sidebar { width: 260px; background: var(--bg-sidebar); border-right: 1px solid var(--border); padding: 20px; display: flex; flex-direction: column; flex-shrink: 0; }
+            .nav-item { padding: 12px; margin-bottom:5px; border-radius: 6px; color: var(--text-muted); cursor: pointer; }
+            .nav-item.active { background: #1f6feb33; color: var(--blue); border-left: 3px solid var(--blue); }
+            .main { flex: 1; padding: 30px; overflow-y: auto; }
+            .view-section { display: none; } .view-section.active { display: block; }
+            .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
+            .stat-card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px; border-radius: 8px; }
+            .stat-value { font-size: 28px; font-weight: 700; }
+            .monitor-list { display: grid; gap: 12px; }
+            .monitor-card { background: var(--bg-card); border: 1px solid var(--border); padding: 15px 20px; border-radius: 8px; display: flex; align-items: center; }
+            .monitor-card.down { border-left: 4px solid var(--red); }
+            .m-history { display: flex; gap: 4px; height: 24px; align-items: flex-end; }
+            .tick { width: 6px; height: 100%; border-radius: 2px; background: var(--border); opacity: 0.5; }
+            .tick.up { background: #3fb950; opacity: 1; } .tick.down { background: #f85149; opacity: 1; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; }
+            .badge { padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+            .bg-red { background: rgba(218, 54, 51, 0.2); color: var(--red); } .bg-blue { background: rgba(88, 166, 255, 0.2); color: var(--blue); }
+            input { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); padding: 10px; border-radius: 6px; }
+        </style>
+    </head>
+    <body>
+        <div class="sidebar">
+            <h2 style="margin:0 0 40px 0">⚡ Monitor</h2>
+            <div class="nav-item active" onclick="switchTab('dashboard', this)">Dashboard</div>
+            <div class="nav-item" onclick="switchTab('incidents', this)">Incidents</div>
+            <div class="nav-item" onclick="switchTab('maintenance', this)">Maintenance</div>
+            <div class="nav-item" onclick="switchTab('settings', this)">Settings</div>
+        </div>
+        <div class="main">
+            <div id="dashboard" class="view-section active">
+                <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                    <h2>Overview</h2>
+                    <input type="text" id="s" placeholder="Search..." onkeyup="runSearch()">
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card"><div>UP</div><div class="stat-value" style="color:#3fb950">167</div></div>
+                    <div class="stat-card"><div>DOWN</div><div class="stat-value" style="color:#f85149">0</div></div>
+                    <div class="stat-card"><div>PING</div><div class="stat-value">198ms</div></div>
+                    <div class="stat-card"><div>TOTAL</div><div class="stat-value">167</div></div>
+                </div>
+                <div class="monitor-list">
+        <div class="monitor-card " data-type="other" data-status="up" data-name="https://www.babyorgano.com/">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Other</span>
+                <div style="font-weight:600; margin-bottom:4px;"></div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/health-care-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">health care combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/health-care-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/baalprashan-swarnaprashan">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">baalprashan swarnaprashan</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/baalprashan-swarnaprashan</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/natural-cold-relief-roll-on">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">natural cold relief roll on</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/natural-cold-relief-roll-on</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/head-to-toe-nourishment-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">head to toe nourishment combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/head-to-toe-nourishment-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/bath-care-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">bath care combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/bath-care-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/natural-ubtan">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">natural ubtan</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/natural-ubtan</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/herbal-kids-toothpaste">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">herbal kids toothpaste</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/herbal-kids-toothpaste</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/nourishing-baby-lotion">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">nourishing baby lotion</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/nourishing-baby-lotion</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/gentle-baby-wash">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">gentle baby wash</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/gentle-baby-wash</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/tomatino-baby-shampoo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">tomatino baby shampoo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/tomatino-baby-shampoo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/hing-roll-on">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">hing roll on</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/hing-roll-on</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/manjishthadi-abhyang-massage-oil">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">manjishthadi abhyang massage oil</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/manjishthadi-abhyang-massage-oil</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/natural-lip-balm">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">natural lip balm</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/natural-lip-balm</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/immunity-natural-cold-care-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">immunity natural cold care combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/immunity-natural-cold-care-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/no-water-handwash">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">no water handwash</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/no-water-handwash</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/bugsaway-mosquito-repellent">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">bugsaway mosquito repellent</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/bugsaway-mosquito-repellent</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/all-round-protection-from-illness-monsoon-care-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">all round protection from illness monsoon care combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/all-round-protection-from-illness-monsoon-care-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/soft-and-gentle-baby-powder">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">soft and gentle baby powder</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/soft-and-gentle-baby-powder</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/natural-ubtan-nourishing-baby-lotion-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">natural ubtan nourishing baby lotion combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/natural-ubtan-nourishing-baby-lotion-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/babyorgano-easy-go-travel-kit-every-babys-travel-partner">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">babyorgano easy go travel kit every babys travel partner</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/babyorgano-easy-go-travel-kit-every-babys-travel-partner</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/babyorgano-pure-rose-water">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">babyorgano pure rose water</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/babyorgano-pure-rose-water</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/babyorgano-pure-rose-water-and-natural-ubtan">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">babyorgano pure rose water and natural ubtan</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/babyorgano-pure-rose-water-and-natural-ubtan</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/nourishing-hair-oil">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">nourishing hair oil</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/nourishing-hair-oil</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/sitopaladi-churna">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">sitopaladi churna</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/sitopaladi-churna</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/ayurvedic-brain-booster-shankhapushpi-syrup">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">ayurvedic brain booster shankhapushpi syrup</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/ayurvedic-brain-booster-shankhapushpi-syrup</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/babyorgano-natural-cold-relief-roll-on-and-sitopaladi-churna-for-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">babyorgano natural cold relief roll on and sitopaladi churna for kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/babyorgano-natural-cold-relief-roll-on-and-sitopaladi-churna-for-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/babyorgano-baalprashan-swarnaprashan-and-brain-booster-shankhpushpi-syrup-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">babyorgano baalprashan swarnaprashan and brain booster shankhpushpi syrup combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/babyorgano-baalprashan-swarnaprashan-and-brain-booster-shankhpushpi-syrup-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/nirgundi-nourishing-hair-oil">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">nirgundi nourishing hair oil</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/nirgundi-nourishing-hair-oil</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/complete-monsoon-care-combo-for-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">complete monsoon care combo for kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/complete-monsoon-care-combo-for-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/cold-defense-combo-for-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">cold defense combo for kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/cold-defense-combo-for-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/nutriverse-kesarhaldi-milk-mix">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">nutriverse kesarhaldi milk mix</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/nutriverse-kesarhaldi-milk-mix</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/skin-care-kit-for-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">skin care kit for kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/skin-care-kit-for-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/bath-care-essentials">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">bath care essentials</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/bath-care-essentials</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/tender-care-kit">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">tender care kit</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/tender-care-kit</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/babys-skincare-kit">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">babys skincare kit</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/babys-skincare-kit</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/nurturing-wellness-ssentials">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">nurturing wellness ssentials</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/nurturing-wellness-ssentials</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/baal-wellness-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">baal wellness combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/baal-wellness-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/little-guardian-essentials">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">little guardian essentials</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/little-guardian-essentials</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/little-guardian-travel-essentials">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">little guardian travel essentials</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/little-guardian-travel-essentials</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/golden-wellness-duo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">golden wellness duo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/golden-wellness-duo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/travel-essentials-for-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">travel essentials for kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/travel-essentials-for-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/baby-wellness-gift">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">baby wellness gift</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/baby-wellness-gift</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/morning-routine-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">morning routine combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/morning-routine-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/suvarnaprashan-drops-sitopaladi-churna-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">suvarnaprashan drops sitopaladi churna combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/suvarnaprashan-drops-sitopaladi-churna-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/natural-immunity-booster-combo-for-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">natural immunity booster combo for kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/natural-immunity-booster-combo-for-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/natural-oral-care-combo-for-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">natural oral care combo for kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/natural-oral-care-combo-for-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/cold-relief-immunity-booster-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">cold relief immunity booster combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/cold-relief-immunity-booster-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/immunity-cold-relief-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">immunity cold relief combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/immunity-cold-relief-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/immunity-growth-cold-relief-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">immunity growth cold relief combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/immunity-growth-cold-relief-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/immunity-gummies">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">immunity gummies</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/immunity-gummies</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/cold-and-cough-gummies">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">cold and cough gummies</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/cold-and-cough-gummies</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/kids-toothpaste-mango">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">kids toothpaste mango</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/kids-toothpaste-mango</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/kids-gummies-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">kids gummies combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/kids-gummies-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/immunity-gummies-suvarnaprashan-drops-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">immunity gummies suvarnaprashan drops combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/immunity-gummies-suvarnaprashan-drops-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/cold-cough-gummies-roll-on-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">cold cough gummies roll on combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/cold-cough-gummies-roll-on-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/sitopaladi-cold-cough-gummies-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">sitopaladi cold cough gummies combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/sitopaladi-cold-cough-gummies-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/cold-wellness-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">cold wellness combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/cold-wellness-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/healthy-tasty-immunity-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">healthy tasty immunity combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/healthy-tasty-immunity-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/cold-and-immunity-shield-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">cold and immunity shield combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/cold-and-immunity-shield-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/nutriverse-chocolate-milk-mix">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">nutriverse chocolate milk mix</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/nutriverse-chocolate-milk-mix</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/eyecare-gummies">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">eyecare gummies</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/eyecare-gummies</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/eye-immunity-wellness-duo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">eye immunity wellness duo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/eye-immunity-wellness-duo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/vision-wellness-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">vision wellness combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/vision-wellness-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/brain-booster-eye-care-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">brain booster eye care combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/brain-booster-eye-care-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/immunity-plus-eye-care-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">immunity plus eye care combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/immunity-plus-eye-care-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/complete-health-gummies-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">complete health gummies combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/complete-health-gummies-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/immunity-wellness-boost-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">immunity wellness boost combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/immunity-wellness-boost-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/everyday-milk-wellness-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">everyday milk wellness combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/everyday-milk-wellness-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/brain-growth-booster-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">brain growth booster combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/brain-growth-booster-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/ayurshild-sunscreen">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">ayurshild sunscreen</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/ayurshild-sunscreen</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/growth-immunity-booster-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">growth immunity booster combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/growth-immunity-booster-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/kesar-haldi-trial-pack">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">kesar haldi trial pack</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/kesar-haldi-trial-pack</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/nutriverse-chocovita-trial-pack">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">nutriverse chocovita trial pack</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/nutriverse-chocovita-trial-pack</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/pain-roll-on">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">pain roll on</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/pain-roll-on</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/tulsi-drops">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">tulsi drops</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/tulsi-drops</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/nature-shield-shine-skin-care">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">nature shield shine skin care</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/nature-shield-shine-skin-care</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/haldikavach-rash-cream">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">haldikavach rash cream</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/haldikavach-rash-cream</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/kids-immunity-cold-relief-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">kids immunity cold relief combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/kids-immunity-cold-relief-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/kanthprash-cough-syrup">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">kanthprash cough syrup</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/kanthprash-cough-syrup</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/ayurvedic-cough-immunity-combo-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">ayurvedic cough immunity combo kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/ayurvedic-cough-immunity-combo-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/ayurvedic-cough-combo-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">ayurvedic cough combo kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/ayurvedic-cough-combo-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/natural-cold-shield-combo-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">natural cold shield combo kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/natural-cold-shield-combo-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/holistic-health-combo-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">holistic health combo kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/holistic-health-combo-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/immunity-duo-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">immunity duo kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/immunity-duo-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/cold-immunity-duo-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">cold immunity duo kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/cold-immunity-duo-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/seasonal-care-combo-tulsi-drops-cough-gummies">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">seasonal care combo tulsi drops cough gummies</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/seasonal-care-combo-tulsi-drops-cough-gummies</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/cold-cough-relief-combo-gummies-kanthprash-syrup">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">cold cough relief combo gummies kanthprash syrup</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/cold-cough-relief-combo-gummies-kanthprash-syrup</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="product" data-status="up" data-name="https://www.babyorgano.com/products/ayurvedic-cough-immunity-support-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Product</span>
+                <div style="font-weight:600; margin-bottom:4px;">ayurvedic cough immunity support combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/products/ayurvedic-cough-immunity-support-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/contact-us">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">contact us</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/contact-us</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/about-us">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">about us</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/about-us</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/safe-for-babies">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">safe for babies</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/safe-for-babies</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/faqs">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">faqs</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/faqs</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/our-policies-app">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">our policies app</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/our-policies-app</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/about-us-application">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">about us application</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/about-us-application</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/our-offline-presence">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">our offline presence</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/our-offline-presence</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/baalprashan-swarnaprashan-immunity-booster">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">baalprashan swarnaprashan immunity booster</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/baalprashan-swarnaprashan-immunity-booster</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/natural-ubtan">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">natural ubtan</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/natural-ubtan</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/brahmi">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">brahmi</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/brahmi</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/natural-cold-relief-roll-on">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">natural cold relief roll on</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/natural-cold-relief-roll-on</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/brand-ambassador-program">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">brand ambassador program</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/brand-ambassador-program</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/wishlist">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">wishlist</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/wishlist</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/baalprashan-swarnaprashan-drops">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">baalprashan swarnaprashan drops</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/baalprashan-swarnaprashan-drops</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/herbal-chocovita-for-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">herbal chocovita for kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/herbal-chocovita-for-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/natural-ubtan-powder-for-babies">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">natural ubtan powder for babies</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/natural-ubtan-powder-for-babies</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/brain-booster-shankhpushpi-syrup">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">brain booster shankhpushpi syrup</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/brain-booster-shankhpushpi-syrup</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/delete-your-account">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">delete your account</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/delete-your-account</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/terms-of-service">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">terms of service</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/terms-of-service</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/our-policies">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">our policies</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/our-policies</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/terms-of-service-app">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">terms of service app</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/terms-of-service-app</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/track-order">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">track order</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/track-order</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/natural-ubtan-genz">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">natural ubtan genz</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/natural-ubtan-genz</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/sitopaladi-churna">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">sitopaladi churna</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/sitopaladi-churna</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/shipping-returns-policy">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">shipping returns policy</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/shipping-returns-policy</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/dr-urvi-ashani">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">dr urvi ashani</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/dr-urvi-ashani</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/brand-ambassador-programme">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">brand ambassador programme</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/brand-ambassador-programme</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/trial-pack">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">trial pack</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/trial-pack</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/cold-relief-for-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">cold relief for kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/cold-relief-for-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/ebook-for-care">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">ebook for care</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/ebook-for-care</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/baby-name-generator">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">baby name generator</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/baby-name-generator</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="page" data-status="up" data-name="https://www.babyorgano.com/pages/doctor-consultation">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Page</span>
+                <div style="font-weight:600; margin-bottom:4px;">doctor consultation</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/pages/doctor-consultation</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/bestseller">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">bestseller</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/bestseller</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/6-15-years">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">6 15 years</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/6-15-years</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/2-5-years">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">2 5 years</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/2-5-years</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/bath-care">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">bath care</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/bath-care</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/hair-care">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">hair care</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/hair-care</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/oral-care">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">oral care</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/oral-care</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/skin-care">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">skin care</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/skin-care</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/wellness">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">wellness</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/wellness</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/0-1-year">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">0 1 year</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/0-1-year</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/combos">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">combos</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/combos</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/home-page-combos">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">home page combos</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/home-page-combos</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/shop">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">shop</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/shop</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/all">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">all</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/all</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/personal-care">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">personal care</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/personal-care</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/morning-care-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">morning care combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/morning-care-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/toddler-combo">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">toddler combo</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/toddler-combo</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/gst5">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">gst5</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/gst5</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/memory-booster">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">memory booster</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/memory-booster</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/cold-cough">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">cold cough</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/cold-cough</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/new-arrivals">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">new arrivals</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/new-arrivals</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/shop-by-age">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">shop by age</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/shop-by-age</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/shop-by-concern">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">shop by concern</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/shop-by-concern</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/essentials">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">essentials</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/essentials</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/nutrition">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">nutrition</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/nutrition</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/classic-ayurvedic-range">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">classic ayurvedic range</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/classic-ayurvedic-range</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/bath-care-combos">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">bath care combos</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/bath-care-combos</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/new-born-combos">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">new born combos</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/new-born-combos</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/toddler-combos">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">toddler combos</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/toddler-combos</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/wellness-combos">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">wellness combos</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/wellness-combos</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/newborn-care">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">newborn care</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/newborn-care</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/boost-immunity">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">boost immunity</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/boost-immunity</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/gift-collection">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">gift collection</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/gift-collection</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/179-wellness-store">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">179 wellness store</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/179-wellness-store</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/gummies">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">gummies</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/gummies</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/249-store">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">249 store</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/249-store</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/milk-mixes">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">milk mixes</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/milk-mixes</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/baby-care-products">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">baby care products</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/baby-care-products</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/kids-care-products">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">kids care products</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/kids-care-products</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/all-product">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">all product</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/all-product</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/bundle-at-599">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">bundle at 599</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/bundle-at-599</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/bundle-at-999">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">bundle at 999</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/bundle-at-999</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/bundle-at-1499">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">bundle at 1499</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/bundle-at-1499</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/trial-pack">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">trial pack</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/trial-pack</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/sale">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">sale</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/sale</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/cold-relief-for-kids">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">cold relief for kids</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/cold-relief-for-kids</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div>
+        <div class="monitor-card " data-type="collection" data-status="up" data-name="https://www.babyorgano.com/collections/b2g1">
+            <div style="flex:1">
+                <span class="badge" style="background:#333; color:#ccc; font-size:10px; margin-bottom:5px; display:inline-block;">Collection</span>
+                <div style="font-weight:600; margin-bottom:4px;">b2g1</div>
+                <div style="font-size:12px; color:var(--text-muted)">https://www.babyorgano.com/collections/b2g1</div>
+            </div>
+            <div class="m-history" style="margin:0 20px"><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div><div class="tick up" title="200"></div></div>
+            <div class="badge bg-blue">OPERATIONAL</div>
+        </div></div>
+            </div>
+            <div id="incidents" class="view-section">
+                <h2>Incidents</h2>
+                <table><thead><tr><th>Date</th><th>URL</th><th>Status</th></tr></thead>
+                <tbody></tbody></table>
+            </div>
+            <div id="maintenance" class="view-section">
+                <h2>Maintenance</h2>
+                <table><thead><tr><th>Event</th><th>Date</th><th>Status</th></tr></thead>
+                <tbody></tbody></table>
+            </div>
+            <div id="settings" class="view-section">
+                <h2>Settings</h2>
+                <p>Version: 3.0.0 (Auto)</p>
+                <button onclick="exportData()" style="padding:10px; background:#238636; color:white; border:none; border-radius:6px; cursor:pointer;">Export CSV</button>
+            </div>
+        </div>
+        <script>
+            function switchTab(id, btn) {
+                document.querySelectorAll('.view-section').forEach(e => e.classList.remove('active'));
+                document.querySelectorAll('.nav-item').forEach(e => e.classList.remove('active'));
+                document.getElementById(id).classList.add('active');
+                btn.classList.add('active');
+            }
+            function runSearch() {
+                const term = document.getElementById('s').value.toLowerCase();
+                document.querySelectorAll('.monitor-card').forEach(c => {
+                    c.style.display = c.dataset.name.includes(term) ? 'flex' : 'none';
+                });
+            }
+            function exportData() {
+                const d = [];
+                if(d.length === 0) { alert("No incidents to export!"); return; }
+                let c = "Date,URL,Status\n" + d.map(r => `${r.date},${r.url},${r.status}`).join("\n");
+                const a = document.createElement("a"); a.href = "data:text/csv;charset=utf-8," + encodeURI(c); a.download = "incidents.csv"; a.click();
+            }
+        </script>
+    </body>
+    </html>

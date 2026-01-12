@@ -1,0 +1,35 @@
+name: Shopify Monitor
+
+on:
+  schedule:
+    - cron: "0 * * * *" # Runs every hour
+  workflow_dispatch: # Allows manual click to run
+
+permissions:
+  contents: write
+
+jobs:
+  check-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install axios xml2js
+
+      - name: Run Monitor
+        run: node monitor-dashboard.js
+        env:
+          # This connects your Discord Secret
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      - name: Save History & Dashboard
+        run: |
+          git config --global user.name 'Monitor Bot'
+          git config --global user.email 'bot@noreply.com'
+          git add database.json dashboard.html
+          git commit -m "Update Monitor Status" || echo "No changes to commit"
+          git push
