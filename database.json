@@ -1,11 +1,6 @@
 {
   "https://www.babyorgano.com/": [
     {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 211
-    },
-    {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
       "time": 262
@@ -249,14 +244,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 323
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 785
     }
   ],
   "https://www.babyorgano.com/products/health-care-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 506
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -501,14 +496,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 539
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 866
     }
   ],
   "https://www.babyorgano.com/products/baalprashan-swarnaprashan": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 238
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -753,14 +748,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 248
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1127
     }
   ],
   "https://www.babyorgano.com/products/natural-cold-relief-roll-on": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 458
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -1005,14 +1000,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 220
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1387
     }
   ],
   "https://www.babyorgano.com/products/head-to-toe-nourishment-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 463
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -1257,14 +1252,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 434
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 779
     }
   ],
   "https://www.babyorgano.com/products/bath-care-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 500
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -1509,14 +1504,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 552
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 700
     }
   ],
   "https://www.babyorgano.com/products/natural-ubtan": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 565
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -1761,14 +1756,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 459
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 765
     }
   ],
   "https://www.babyorgano.com/products/herbal-kids-toothpaste": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 537
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -2013,14 +2008,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 778
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 595
     }
   ],
   "https://www.babyorgano.com/products/nourishing-baby-lotion": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 567
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -2265,14 +2260,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 584
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1029
     }
   ],
   "https://www.babyorgano.com/products/gentle-baby-wash": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 498
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -2517,14 +2512,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 545
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 765
     }
   ],
   "https://www.babyorgano.com/products/tomatino-baby-shampoo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 513
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -2769,14 +2764,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 621
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 795
     }
   ],
   "https://www.babyorgano.com/products/hing-roll-on": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 592
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -3021,14 +3016,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 869
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 593
     }
   ],
   "https://www.babyorgano.com/products/manjishthadi-abhyang-massage-oil": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 502
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -3273,14 +3268,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 651
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1266
     }
   ],
   "https://www.babyorgano.com/products/natural-lip-balm": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 443
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -3525,14 +3520,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 609
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 852
     }
   ],
   "https://www.babyorgano.com/products/immunity-natural-cold-care-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 363
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -3777,14 +3772,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 482
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1275
     }
   ],
   "https://www.babyorgano.com/products/no-water-handwash": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 482
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -4029,14 +4024,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 532
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1321
     }
   ],
   "https://www.babyorgano.com/products/bugsaway-mosquito-repellent": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 473
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -4281,14 +4276,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 426
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1129
     }
   ],
   "https://www.babyorgano.com/products/all-round-protection-from-illness-monsoon-care-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 461
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -4533,14 +4528,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 522
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 794
     }
   ],
   "https://www.babyorgano.com/products/soft-and-gentle-baby-powder": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 473
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -4785,14 +4780,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 523
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 532
     }
   ],
   "https://www.babyorgano.com/products/natural-ubtan-nourishing-baby-lotion-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 477
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -5037,14 +5032,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 479
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 560
     }
   ],
   "https://www.babyorgano.com/products/babyorgano-easy-go-travel-kit-every-babys-travel-partner": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 210
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -5289,14 +5284,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 521
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1265
     }
   ],
   "https://www.babyorgano.com/products/babyorgano-pure-rose-water": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 494
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -5541,14 +5536,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 515
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1087
     }
   ],
   "https://www.babyorgano.com/products/babyorgano-pure-rose-water-and-natural-ubtan": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 523
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -5793,14 +5788,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 446
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 503,
+      "time": 0
     }
   ],
   "https://www.babyorgano.com/products/nourishing-hair-oil": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 199
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -6045,14 +6040,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 550
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 503,
+      "time": 0
     }
   ],
   "https://www.babyorgano.com/products/sitopaladi-churna": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 197
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -6297,14 +6292,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 558
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 503,
+      "time": 0
     }
   ],
   "https://www.babyorgano.com/products/ayurvedic-brain-booster-shankhapushpi-syrup": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 215
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -6549,14 +6544,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 522
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 503,
+      "time": 0
     }
   ],
   "https://www.babyorgano.com/products/babyorgano-natural-cold-relief-roll-on-and-sitopaladi-churna-for-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 457
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -6801,14 +6796,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 1116
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 506
     }
   ],
   "https://www.babyorgano.com/products/babyorgano-baalprashan-swarnaprashan-and-brain-booster-shankhpushpi-syrup-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 472
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -7053,14 +7048,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 475
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 503,
+      "time": 0
     }
   ],
   "https://www.babyorgano.com/products/nirgundi-nourishing-hair-oil": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 195
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -7305,14 +7300,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 538
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 526
     }
   ],
   "https://www.babyorgano.com/products/complete-monsoon-care-combo-for-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 234
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -7557,14 +7552,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 485
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 518
     }
   ],
   "https://www.babyorgano.com/products/cold-defense-combo-for-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 537
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -7809,14 +7804,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 475
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 6611
     }
   ],
   "https://www.babyorgano.com/products/nutriverse-kesarhaldi-milk-mix": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 217
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -8061,14 +8056,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 247
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1229
     }
   ],
   "https://www.babyorgano.com/products/skin-care-kit-for-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 472
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -8313,14 +8308,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 461
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 469
     }
   ],
   "https://www.babyorgano.com/products/bath-care-essentials": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 204
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -8565,14 +8560,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 463
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 682
     }
   ],
   "https://www.babyorgano.com/products/tender-care-kit": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 204
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -8817,14 +8812,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 424
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 666
     }
   ],
   "https://www.babyorgano.com/products/babys-skincare-kit": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 192
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -9069,14 +9064,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 523
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 730
     }
   ],
   "https://www.babyorgano.com/products/nurturing-wellness-ssentials": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 414
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -9321,14 +9316,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 440
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 433
     }
   ],
   "https://www.babyorgano.com/products/baal-wellness-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 461
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -9573,14 +9568,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 414
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 424
     }
   ],
   "https://www.babyorgano.com/products/little-guardian-essentials": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 417
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -9825,14 +9820,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 415
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 947
     }
   ],
   "https://www.babyorgano.com/products/little-guardian-travel-essentials": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 401
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -10077,14 +10072,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 1587
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 812
     }
   ],
   "https://www.babyorgano.com/products/golden-wellness-duo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 398
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -10329,14 +10324,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 479
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 772
     }
   ],
   "https://www.babyorgano.com/products/travel-essentials-for-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 195
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -10581,14 +10576,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 516
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 992
     }
   ],
   "https://www.babyorgano.com/products/baby-wellness-gift": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 423
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -10833,14 +10828,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 560
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 587
     }
   ],
   "https://www.babyorgano.com/products/morning-routine-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 417
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -11085,14 +11080,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 426
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1060
     }
   ],
   "https://www.babyorgano.com/products/suvarnaprashan-drops-sitopaladi-churna-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 216
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -11337,14 +11332,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 644
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1063
     }
   ],
   "https://www.babyorgano.com/products/natural-immunity-booster-combo-for-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 448
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -11589,14 +11584,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 532
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 503,
+      "time": 0
     }
   ],
   "https://www.babyorgano.com/products/natural-oral-care-combo-for-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 539
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -11841,14 +11836,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 487
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 446
     }
   ],
   "https://www.babyorgano.com/products/cold-relief-immunity-booster-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 422
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -12093,14 +12088,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 466
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 433
     }
   ],
   "https://www.babyorgano.com/products/immunity-cold-relief-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 460
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -12345,14 +12340,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 467
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 468
     }
   ],
   "https://www.babyorgano.com/products/immunity-growth-cold-relief-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 443
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -12597,14 +12592,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 748
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 503,
+      "time": 0
     }
   ],
   "https://www.babyorgano.com/products/immunity-gummies": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 635
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -12849,14 +12844,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 503
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 503,
+      "time": 0
     }
   ],
   "https://www.babyorgano.com/products/cold-and-cough-gummies": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 403
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -13101,14 +13096,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 515
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1203
     }
   ],
   "https://www.babyorgano.com/products/kids-toothpaste-mango": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 206
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -13353,14 +13348,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 496
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 430
     }
   ],
   "https://www.babyorgano.com/products/kids-gummies-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 435
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -13605,14 +13600,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 542
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 775
     }
   ],
   "https://www.babyorgano.com/products/immunity-gummies-suvarnaprashan-drops-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 204
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -13857,14 +13852,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 514
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 703
     }
   ],
   "https://www.babyorgano.com/products/cold-cough-gummies-roll-on-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 210
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -14109,14 +14104,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 231
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 674
     }
   ],
   "https://www.babyorgano.com/products/sitopaladi-cold-cough-gummies-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 508
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -14361,14 +14356,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 481
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 825
     }
   ],
   "https://www.babyorgano.com/products/cold-wellness-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 462
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -14613,14 +14608,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 213
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 682
     }
   ],
   "https://www.babyorgano.com/products/healthy-tasty-immunity-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 247
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -14865,14 +14860,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 494
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 785
     }
   ],
   "https://www.babyorgano.com/products/cold-and-immunity-shield-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 443
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -15117,14 +15112,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 470
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 3472
     }
   ],
   "https://www.babyorgano.com/products/nutriverse-chocolate-milk-mix": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 221
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -15369,14 +15364,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 614
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 642
     }
   ],
   "https://www.babyorgano.com/products/eyecare-gummies": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 655
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -15621,14 +15616,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 657
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 620
     }
   ],
   "https://www.babyorgano.com/products/eye-immunity-wellness-duo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 523
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -15873,14 +15868,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 436
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 733
     }
   ],
   "https://www.babyorgano.com/products/vision-wellness-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 392
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -16125,14 +16120,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 441
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 761
     }
   ],
   "https://www.babyorgano.com/products/brain-booster-eye-care-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 458
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -16377,14 +16372,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 459
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 469
     }
   ],
   "https://www.babyorgano.com/products/immunity-plus-eye-care-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 464
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -16629,14 +16624,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 445
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 760
     }
   ],
   "https://www.babyorgano.com/products/complete-health-gummies-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 526
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -16881,14 +16876,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 579
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 513
     }
   ],
   "https://www.babyorgano.com/products/immunity-wellness-boost-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 422
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -17133,14 +17128,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 546
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 917
     }
   ],
   "https://www.babyorgano.com/products/everyday-milk-wellness-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 446
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -17385,14 +17380,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 470
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1244
     }
   ],
   "https://www.babyorgano.com/products/brain-growth-booster-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 483
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -17637,14 +17632,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 624
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 510
     }
   ],
   "https://www.babyorgano.com/products/ayurshild-sunscreen": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 216
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -17889,14 +17884,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 642
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 487
     }
   ],
   "https://www.babyorgano.com/products/growth-immunity-booster-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 210
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -18141,14 +18136,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 545
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 787
     }
   ],
   "https://www.babyorgano.com/products/kesar-haldi-trial-pack": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 550
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -18393,14 +18388,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 515
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1045
     }
   ],
   "https://www.babyorgano.com/products/nutriverse-chocovita-trial-pack": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 531
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -18645,14 +18640,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 576
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1193
     }
   ],
   "https://www.babyorgano.com/products/pain-roll-on": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 198
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -18897,14 +18892,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 479
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1210
     }
   ],
   "https://www.babyorgano.com/products/tulsi-drops": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 752
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -19149,14 +19144,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 544
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1110
     }
   ],
   "https://www.babyorgano.com/products/nature-shield-shine-skin-care": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 470
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -19401,14 +19396,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 505
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 862
     }
   ],
   "https://www.babyorgano.com/products/haldikavach-rash-cream": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 208
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -19653,14 +19648,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 434
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 865
     }
   ],
   "https://www.babyorgano.com/products/kids-immunity-cold-relief-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 211
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -19905,14 +19900,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 240
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 472
     }
   ],
   "https://www.babyorgano.com/products/kanthprash-cough-syrup": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 206
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -20157,14 +20152,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 515
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 834
     }
   ],
   "https://www.babyorgano.com/products/ayurvedic-cough-immunity-combo-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 528
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -20409,14 +20404,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 482
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 664
     }
   ],
   "https://www.babyorgano.com/products/ayurvedic-cough-combo-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 409
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -20661,14 +20656,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 481
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1848
     }
   ],
   "https://www.babyorgano.com/products/natural-cold-shield-combo-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 505
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -20913,14 +20908,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 563
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1020
     }
   ],
   "https://www.babyorgano.com/products/holistic-health-combo-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 442
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -21165,14 +21160,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 561
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 493
     }
   ],
   "https://www.babyorgano.com/products/immunity-duo-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 217
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -21417,14 +21412,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 261
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 467
     }
   ],
   "https://www.babyorgano.com/products/cold-immunity-duo-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 201
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -21669,14 +21664,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 524
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 428
     }
   ],
   "https://www.babyorgano.com/products/seasonal-care-combo-tulsi-drops-cough-gummies": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 474
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -21921,14 +21916,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 917
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 646
     }
   ],
   "https://www.babyorgano.com/products/cold-cough-relief-combo-gummies-kanthprash-syrup": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 462
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -22173,14 +22168,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 477
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 528
     }
   ],
   "https://www.babyorgano.com/products/ayurvedic-cough-immunity-support-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 207
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -22425,14 +22420,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 485
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1114
     }
   ],
   "https://www.babyorgano.com/pages/contact-us": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 370
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -22677,14 +22672,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 422
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 820
     }
   ],
   "https://www.babyorgano.com/pages/about-us": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 404
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -22929,14 +22924,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 4739
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 959
     }
   ],
   "https://www.babyorgano.com/pages/safe-for-babies": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 202
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -23181,14 +23176,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 410
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 699
     }
   ],
   "https://www.babyorgano.com/pages/faqs": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 402
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -23433,14 +23428,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 444
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 701
     }
   ],
   "https://www.babyorgano.com/pages/our-policies-app": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 211
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -23685,14 +23680,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 410
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1042
     }
   ],
   "https://www.babyorgano.com/pages/about-us-application": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 404,
-      "time": 0
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 404,
@@ -23937,14 +23932,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 404,
       "time": 0
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 404,
+      "time": 0
     }
   ],
   "https://www.babyorgano.com/pages/our-offline-presence": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 453
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -24189,14 +24184,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 411
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 652
     }
   ],
   "https://www.babyorgano.com/pages/baalprashan-swarnaprashan-immunity-booster": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 235
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -24441,14 +24436,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 521
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1372
     }
   ],
   "https://www.babyorgano.com/pages/natural-ubtan": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 470
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -24693,14 +24688,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 1096
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 620
     }
   ],
   "https://www.babyorgano.com/pages/brahmi": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 366
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -24945,14 +24940,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 359
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 387
     }
   ],
   "https://www.babyorgano.com/pages/natural-cold-relief-roll-on": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 418
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -25197,14 +25192,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 524
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 771
     }
   ],
   "https://www.babyorgano.com/pages/brand-ambassador-program": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 205
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -25449,14 +25444,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 451
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 507
     }
   ],
   "https://www.babyorgano.com/pages/wishlist": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 377
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -25701,14 +25696,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 368
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 711
     }
   ],
   "https://www.babyorgano.com/pages/baalprashan-swarnaprashan-drops": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 488
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -25953,14 +25948,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 485
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 870
     }
   ],
   "https://www.babyorgano.com/pages/herbal-chocovita-for-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 430
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -26205,14 +26200,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 641
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 630
     }
   ],
   "https://www.babyorgano.com/pages/natural-ubtan-powder-for-babies": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 456
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -26457,14 +26452,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 583
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 887
     }
   ],
   "https://www.babyorgano.com/pages/brain-booster-shankhpushpi-syrup": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 482
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -26709,14 +26704,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 679
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 767
     }
   ],
   "https://www.babyorgano.com/pages/delete-your-account": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 400
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -26961,14 +26956,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 715
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 375
     }
   ],
   "https://www.babyorgano.com/pages/terms-of-service": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 377
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -27213,14 +27208,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 492
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 462
     }
   ],
   "https://www.babyorgano.com/pages/our-policies": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 424
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -27465,14 +27460,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 410
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 385
     }
   ],
   "https://www.babyorgano.com/pages/terms-of-service-app": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 208
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -27717,14 +27712,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 433
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 540
     }
   ],
   "https://www.babyorgano.com/pages/track-order": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 201
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -27969,14 +27964,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 378
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 574
     }
   ],
   "https://www.babyorgano.com/pages/natural-ubtan-genz": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 523
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -28221,14 +28216,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 533
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 565
     }
   ],
   "https://www.babyorgano.com/pages/sitopaladi-churna": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 484
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -28473,14 +28468,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 522
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 732
     }
   ],
   "https://www.babyorgano.com/pages/shipping-returns-policy": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 429
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -28725,14 +28720,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 380
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 644
     }
   ],
   "https://www.babyorgano.com/pages/dr-urvi-ashani": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 421
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -28977,14 +28972,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 508
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 790
     }
   ],
   "https://www.babyorgano.com/pages/brand-ambassador-programme": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 411
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -29229,14 +29224,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 404
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 432
     }
   ],
   "https://www.babyorgano.com/pages/trial-pack": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 196
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -29481,14 +29476,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 506
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 773
     }
   ],
   "https://www.babyorgano.com/pages/cold-relief-for-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 508
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -29733,14 +29728,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 480
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 465
     }
   ],
   "https://www.babyorgano.com/pages/ebook-for-care": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 371
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -29985,14 +29980,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 387
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 552
     }
   ],
   "https://www.babyorgano.com/pages/baby-name-generator": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 196
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -30237,14 +30232,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 243
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 428
     }
   ],
   "https://www.babyorgano.com/pages/doctor-consultation": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 362
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -30489,14 +30484,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 419
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 470
     }
   ],
   "https://www.babyorgano.com/collections/bestseller": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 413
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -30741,14 +30736,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 492
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 625
     }
   ],
   "https://www.babyorgano.com/collections/6-15-years": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 204
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -30993,14 +30988,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 780
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 940
     }
   ],
   "https://www.babyorgano.com/collections/2-5-years": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 211
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -31245,14 +31240,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 465
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 682
     }
   ],
   "https://www.babyorgano.com/collections/bath-care": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 447
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -31497,14 +31492,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 445
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 778
     }
   ],
   "https://www.babyorgano.com/collections/hair-care": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 191
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -31749,14 +31744,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 472
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 540
     }
   ],
   "https://www.babyorgano.com/collections/oral-care": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 464
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -32001,14 +31996,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 425
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 546
     }
   ],
   "https://www.babyorgano.com/collections/skin-care": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 206
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -32253,14 +32248,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 544
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 478
     }
   ],
   "https://www.babyorgano.com/collections/wellness": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 449
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -32505,14 +32500,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 439
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 784
     }
   ],
   "https://www.babyorgano.com/collections/0-1-year": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 491
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -32757,14 +32752,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 574
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 735
     }
   ],
   "https://www.babyorgano.com/collections/combos": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 425
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -33009,14 +33004,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 418
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 627
     }
   ],
   "https://www.babyorgano.com/collections/home-page-combos": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 400
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -33261,14 +33256,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 448
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 547
     }
   ],
   "https://www.babyorgano.com/collections/shop": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 213
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -33513,14 +33508,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 471
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 535
     }
   ],
   "https://www.babyorgano.com/collections/all": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 199
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -33765,14 +33760,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 550
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 508
     }
   ],
   "https://www.babyorgano.com/collections/personal-care": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 212
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -34017,14 +34012,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 517
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 643
     }
   ],
   "https://www.babyorgano.com/collections/morning-care-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 209
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -34269,14 +34264,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 443
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 605
     }
   ],
   "https://www.babyorgano.com/collections/toddler-combo": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 445
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -34521,14 +34516,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 502
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 556
     }
   ],
   "https://www.babyorgano.com/collections/gst5": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 472
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -34773,14 +34768,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 679
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 2036
     }
   ],
   "https://www.babyorgano.com/collections/memory-booster": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 452
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -35025,14 +35020,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 670
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 828
     }
   ],
   "https://www.babyorgano.com/collections/cold-cough": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 464
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -35277,14 +35272,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 490
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 737
     }
   ],
   "https://www.babyorgano.com/collections/new-arrivals": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 218
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -35529,14 +35524,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 761
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 537
     }
   ],
   "https://www.babyorgano.com/collections/shop-by-age": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 491
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -35781,14 +35776,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 496
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 835
     }
   ],
   "https://www.babyorgano.com/collections/shop-by-concern": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 470
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -36033,14 +36028,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 445
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 485
     }
   ],
   "https://www.babyorgano.com/collections/essentials": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 531
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -36285,14 +36280,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 478
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 545
     }
   ],
   "https://www.babyorgano.com/collections/nutrition": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 219
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -36537,14 +36532,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 1171
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 678
     }
   ],
   "https://www.babyorgano.com/collections/classic-ayurvedic-range": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 411
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -36789,14 +36784,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 456
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 713
     }
   ],
   "https://www.babyorgano.com/collections/bath-care-combos": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 431
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -37041,14 +37036,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 586
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 874
     }
   ],
   "https://www.babyorgano.com/collections/new-born-combos": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 976
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -37293,14 +37288,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 466
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 7360
     }
   ],
   "https://www.babyorgano.com/collections/toddler-combos": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 450
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -37545,14 +37540,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 439
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 650
     }
   ],
   "https://www.babyorgano.com/collections/wellness-combos": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 417
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -37797,14 +37792,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 460
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 598
     }
   ],
   "https://www.babyorgano.com/collections/newborn-care": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 405
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -38049,14 +38044,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 503
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 932
     }
   ],
   "https://www.babyorgano.com/collections/boost-immunity": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 207
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -38301,14 +38296,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 540
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 614
     }
   ],
   "https://www.babyorgano.com/collections/gift-collection": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 490
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -38553,14 +38548,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 584
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1935
     }
   ],
   "https://www.babyorgano.com/collections/179-wellness-store": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 198
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -38805,14 +38800,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 442
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 709
     }
   ],
   "https://www.babyorgano.com/collections/gummies": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 478
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -39057,14 +39052,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 629
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 664
     }
   ],
   "https://www.babyorgano.com/collections/249-store": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 447
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -39309,14 +39304,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 435
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1086
     }
   ],
   "https://www.babyorgano.com/collections/milk-mixes": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 236
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -39561,14 +39556,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 540
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 714
     }
   ],
   "https://www.babyorgano.com/collections/baby-care-products": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 517
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -39813,14 +39808,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 495
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 555
     }
   ],
   "https://www.babyorgano.com/collections/kids-care-products": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 475
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -40065,14 +40060,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 483
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 747
     }
   ],
   "https://www.babyorgano.com/collections/all-product": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 456
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -40317,14 +40312,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 495
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 724
     }
   ],
   "https://www.babyorgano.com/collections/bundle-at-599": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 428
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -40569,14 +40564,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 871
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 478
     }
   ],
   "https://www.babyorgano.com/collections/bundle-at-999": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 213
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -40821,14 +40816,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 410
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 975
     }
   ],
   "https://www.babyorgano.com/collections/bundle-at-1499": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 209
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -41073,14 +41068,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 477
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 832
     }
   ],
   "https://www.babyorgano.com/collections/trial-pack": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 394
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -41325,14 +41320,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 421
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 762
     }
   ],
   "https://www.babyorgano.com/collections/sale": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 429
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -41577,14 +41572,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 539
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 1152
     }
   ],
   "https://www.babyorgano.com/collections/cold-relief-for-kids": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 220
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -41829,14 +41824,14 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 517
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 957
     }
   ],
   "https://www.babyorgano.com/collections/b2g1": [
-    {
-      "date": "2026-01-17T11:14:45.179Z",
-      "status": 200,
-      "time": 495
-    },
     {
       "date": "2026-01-17T12:34:01.423Z",
       "status": 200,
@@ -42081,6 +42076,11 @@
       "date": "2026-01-19T16:25:18.093Z",
       "status": 200,
       "time": 499
+    },
+    {
+      "date": "2026-01-19T17:21:18.933Z",
+      "status": 200,
+      "time": 820
     }
   ]
 }
